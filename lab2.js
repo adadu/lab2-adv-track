@@ -135,6 +135,7 @@ SentientBeing.prototype.sayHello = function(sb) {
   // to do the translating
   console.log(this.speak);
   console.log(sb);
+  return sb.speak;
   //TODO: put this on the SentientBeing prototype
 };
 
@@ -166,15 +167,15 @@ assert((new Human()).sayHello(new Klingon()) === 'nuqneH',
   'the klingon should hear nuqneH');
 // TODO: write five more assertions, to complete all the possible
 // greetings between the three types of sentient beings you created above.
-assert((new Human()).sayHello(new Romulan()) === 'hello > Jolan\'tru',
+assert((new Human()).sayHello(new Romulan()) === 'Jolan\'tru',
   'the romulan should hear Jolan\'tru');
-assert((new Klingon()).sayHello(new Human()) === 'nuqneH > hello',
+assert((new Klingon()).sayHello(new Human()) === 'hello',
   'the human should hear hello');
-assert((new Klingon()).sayHello(new Romulan()) === 'nuqneH > Jolan\'tru',
+assert((new Klingon()).sayHello(new Romulan()) === 'Jolan\'tru',
   'the romulan should hear Jolan\'tru');
-assert((new Romulan()).sayHello(new Klingon()) === 'Jolan\'tru > nuqneH',
+assert((new Romulan()).sayHello(new Klingon()) === 'nuqneH',
   'the klingon should hear nuqneH');
-assert((new Romulan()).sayHello(new Human()) === 'Jolan\'tru > hello',
+assert((new Romulan()).sayHello(new Human()) === 'hello',
   'the human should hear hello');
 
 //*********************************************************
@@ -185,6 +186,7 @@ assert((new Romulan()).sayHello(new Human()) === 'Jolan\'tru > hello',
 // will test your code)
 //*********************************************************
 var rKelly = ['i', 'believe', 'fly', 'can'];
+var hallOats = ['she\'s', 'a', 'man', 'eater'];
 
 function lastLetterSort(stringArray) {
 
@@ -202,6 +204,7 @@ function lastLetterSort(stringArray) {
 }
 
 var nums = [7, 5, 8];
+var numsTest = [9, 9, 30];
 
 function sumArray(numberArray) {
   var sum = 0;
@@ -213,9 +216,9 @@ function sumArray(numberArray) {
 }
 
 var sumArr = [[1, 2, 2], [3, 6], [100, 1]];
+var sumArrTest = [[5, 4, 2], [1, 9, 43], [67, 2], [5, 11, 13]];
 
 function sumSort(arrayOfArrays) {
-
   arrayOfArrays.sort(function(item1, item2) {
     // TODO: implement me using sumArray
     //  order the arrays based on the sum of the numbers
@@ -227,19 +230,28 @@ function sumSort(arrayOfArrays) {
 
 console.log('SORT STRING BY LAST LETTER: ' + lastLetterSort(rKelly));
 lastLetterSort(rKelly);
+console.log('SORT STRING BY LAST LETTER TEST: ' + lastLetterSort(hallOats));
+
 console.log('SUMARRAY FOREACH: ' + sumArray(nums));
 sumArray(nums);
+console.log('SUMARRAY FOREACH: ' + sumArray(nums));
+
 console.log('SUMSORT PROBLEM: ' + sumSort(sumArr));
 sumSort(sumArr);
+console.log('SUMSORT PROBLEM TEST: ' + sumSort(sumArrTest));
 
 assert(lastLetterSort(rKelly).toString() === 'believe,i,can,fly',
-  'NO! -- your array needs to be: believe i can fly');
-assert(lastLetterSort(rKelly).toString() !== 'fly', 'i', 'can', 'believe',
-  'YES! -- your array is not: fly i can believe');
-assert(sumArray(nums) === 20, 'sumArray should equal 20');
-assert(sumArray(nums) !== 19, 'sumArray should equal 20');
-assert(sumSort(sumArr) === '101,9,5', 'sumSort = 101, 9, 5');
-assert(sumSort(sumArr) !== '100,9,5', 'sumSort does NOT = 101, 9, 5');
+  'your string should print: believe,i,can,fly');
+assert(lastLetterSort(rKelly).toString() !== 'fly,i,can,believe',
+  'your string should NOT print: fly,i,can,believe and should print: believe,i,can,fly');
+assert(lastLetterSort(hallOats).toString() === 'a,man,eater,she\'s',
+  'your string should print: a,man,eater,she\'s');
+
+assert(sumArray(nums) === 20, 'nums should equal 20');
+assert(sumArray(numsTest) === 48, 'numsTest should equal 48');
+
+assert(sumSort(sumArr).toString() === '100,1,3,6,1,2,2', 'sumArr = 100,1,3,6,1,2,2');
+assert(sumSort(sumArrTest).toString() === '67,2,1,9,43,5,11,13,5,4,2', 'sumArrTest = 67,2,1,9,43,5,11,13,5,4,2');
 
 //*********************************************************
 // PROBLEM 4: Cleanup: 10 points
